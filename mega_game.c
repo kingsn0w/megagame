@@ -6,7 +6,6 @@
 #include<conio.h>
 #include<time.h>
 
-// Definindo Structs responsáveis pelos Comandos-------- 
 
 // Criando estrtura que irá armazenar os caracteres de uma linha para todo o resto dos gráficos. 
 typedef struct {
