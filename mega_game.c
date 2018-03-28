@@ -6,7 +6,16 @@
 #include<conio.h>
 #include<time.h>
 
+/* Definindo Structs responsáveis pelos Comandos-------- 
+@Taiguz aqui eu não sei do que se tratam exatamente as estruturas de COMANDO e LINHA 
+se puder editar e corrigir, blz?
 
+Inclusões das linhas: 385, 411, 437 e 459. (conferir)
+
+Conferir linha 549
+
+~kingsn0w (27/03/2018 22:20-22:44)
+*/
 typedef struct {
 
 	char comando[50];
@@ -17,14 +26,17 @@ typedef struct {
 	char linha[300];
 } LINHA;
 
+/* Os "objetos gráficos" do jogo (Cartas, Inimigos, Menus, HUD's, entre outros)
+serão definidos através dos structs abaixo, cada qual com suas devidas variáveis. */
+
 typedef struct {
-// tipo : 1 monstro, 2 magica, 3 armadilha;
+// Tipo : 1 - Monstro, 2 - Mágica, 3 - Armadilha;
 	int tipo;
 
 	int atk;
 
 	int def;
-// modo : 1 atk, 2: defesa;
+// Modo : 1 - Ataque, 2 - Defesa;
 	int modo;
 
 	char nome[50];
@@ -60,6 +72,8 @@ typedef struct {
 	LINHA linhas[10];
 } MENU;
 
+// Atribuindo à struct seu respectivo vetor.
+
 TELA telas[20];
 
 HUD hud[1];
@@ -71,6 +85,8 @@ CARTA cartas[10];
 INIMIGO inimigos[10];
 
 COMANDO comandos[5];
+
+// Declarando variáveis a serem utilizadas neste código.
 
 int i, j, cmds_count, entrada;
 
@@ -85,6 +101,8 @@ int deck_jogador[40];
 int count;
 
 int comand;
+
+// Criando função responsável por receber comandos "in-game" (digitados no console).
 
 int Comando(char cmd[50]) {
 
@@ -126,6 +144,8 @@ int Comando(char cmd[50]) {
 
 	return comando;
 }
+
+// Desenhando a Mesa do Jogo.
 
 void DesenharMesa() {
 
@@ -182,6 +202,8 @@ void DesenharMesa() {
 	}
 	count_hud = 0 ;
 }
+
+// Desenhando a HUD do jogo.
 
 void CriarHUD() {
 	strcpy(hud[0].linhas[0].linha, "     +-------+");
@@ -262,6 +284,8 @@ void CriarHUD() {
 	strcpy(hud[2].linhas[2].linha, "                                                    +---------+                                                   ");
 }
 
+// Criando função(?) responsável por limpar o menu da HUD.
+
 void limpar_menu() {
 
 	for (i = 26; i <= 34; i++) {
@@ -271,6 +295,8 @@ void limpar_menu() {
 
 	}
 }
+
+// Criando função(?) responsável por exibir as escolhas na HUD.
 
 void DesenharMenu(int escolha) {
 
@@ -293,6 +319,8 @@ void DesenharMenu(int escolha) {
 	}
 }
 
+// Criando função(?) responsável por desenhar as telas do jogo.
+
 void DesenharTela(int tel) {
 
 	system("cls");
@@ -303,6 +331,7 @@ void DesenharTela(int tel) {
 	}
 }
 
+// Criando função(?) que irá conter todas as cartas do jogo.
 
 void CriarCartas() {
 // Criando cartas
@@ -357,6 +386,7 @@ void CriarCartas() {
 	cartas[2].atk = 3200;
 	cartas[2].def = 1300;
 	strcpy(cartas[2].nome, "MINDSTEALER");
+	strcpy(cartas[2].desc, "O polvo malígno controlador de mentes");
 	strcpy(cartas[2].linhas[0].linha, "+-------------------+");
 	strcpy(cartas[2].linhas[1].linha, "|    MINDSTEALER    |");
 	strcpy(cartas[2].linhas[2].linha, "+-------------------+");
@@ -381,9 +411,10 @@ void CriarCartas() {
 	cartas[3].tipo = 1;
 	cartas[3].atk = 4100;
 	cartas[3].def = 1900;
-	strcpy(cartas[3].nome, "HAEGON");
+	strcpy(cartas[3].nome, "RHAEGON");
+	strcpy(cartas[3].desc, "O cavaleiro real");
 	strcpy(cartas[3].linhas[0].linha, "+-------------------+");
-	strcpy(cartas[3].linhas[1].linha, "|      HAEGON       |");
+	strcpy(cartas[3].linhas[1].linha, "|      RHAEGON      |");
 	strcpy(cartas[3].linhas[2].linha, "+-------------------+");
 	strcpy(cartas[3].linhas[3].linha, "|  @@@@@       /\\   |");
 	strcpy(cartas[3].linhas[4].linha, "| @@@@@@@      ||   |");
@@ -401,12 +432,13 @@ void CriarCartas() {
 	strcpy(cartas[3].linhas[16].linha, "|ATK:4100 | DEF:1900|");
 	strcpy(cartas[3].linhas[17].linha, "+---------+---------+");
 
-	strcpy(cartas[3].nome_menu[0].linha, "|# - Haegon            |");
+	strcpy(cartas[3].nome_menu[0].linha, "|# - Rhaegon            |");
 
 	cartas[4].tipo = 1;
 	cartas[4].atk = 3200;
 	cartas[4].def = 1300;
 	strcpy(cartas[4].nome, "KYRA");
+	strcpy(cartas[4].desc, "A poderosa líder arqueira");
 	strcpy(cartas[4].linhas[0].linha, "+-------------------+");
 	strcpy(cartas[4].linhas[1].linha, "|        KYRA       |");
 	strcpy(cartas[4].linhas[2].linha, "+-------------------+");
@@ -428,6 +460,7 @@ void CriarCartas() {
 
 	strcpy(cartas[4].nome_menu[0].linha, "|# - Kyra              |");
 
+	strcpy(cartas[5].desc, "O temido viking");
 	strcpy(cartas[5].linhas[0].linha, "+-------------------+");
 	strcpy(cartas[5].linhas[1].linha, "|      GOLYAN       |");
 	strcpy(cartas[5].linhas[2].linha, "+-------------------+");
@@ -449,6 +482,8 @@ void CriarCartas() {
 
 	strcpy(cartas[5].nome_menu[0].linha, "|# - Golyan            |");
 }
+
+// Criando função(?) referente à tela de início do jogo.
 
 void CriarTelas() {
 
@@ -511,6 +546,8 @@ void CriarTelas() {
 	strcpy(telas[2].linhas[17].linha, "+--------------------------------------------------------------------------------------------------------+");
 }
 
+// Criando função(?) que irá conter as cartas inimigas. (OBS - As cartas não estarão todas na função acima?)
+
 void CriarInimigos() {
 
 	strcpy(inimigos[0].nome, "John");
@@ -533,6 +570,7 @@ void CriarInimigos() {
 	strcpy(inimigos[0].linhas[16].linha, "+------------------------+");
 }
 
+// Criando função "main()", a estrutura principal do jogo.
 
 int main() {
 
