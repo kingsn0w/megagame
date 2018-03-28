@@ -6,21 +6,9 @@
 #include<conio.h>
 #include<time.h>
 
-/* Definindo Structs responsáveis pelos Comandos-------- 
-@Taiguz aqui eu não sei do que se tratam exatamente as estruturas de COMANDO e LINHA 
-se puder editar e corrigir, blz?
+// Definindo Structs responsáveis pelos Comandos-------- 
 
-Inclusões das linhas: 385, 411, 437 e 459. (conferir)
-
-Conferir linha 549
-
-~kingsn0w (27/03/2018 22:20-22:44)
-*/
-typedef struct {
-
-	char comando[50];
-} COMANDO;
-
+// Criando estrtura que irá armazenar os caracteres de uma linha para todo o resto dos gráficos. 
 typedef struct {
 
 	char linha[300];
@@ -284,7 +272,7 @@ void CriarHUD() {
 	strcpy(hud[2].linhas[2].linha, "                                                    +---------+                                                   ");
 }
 
-// Criando função(?) responsável por limpar o menu da HUD.
+// Função responsável por limpar o menu da HUD.
 
 void limpar_menu() {
 
@@ -296,7 +284,7 @@ void limpar_menu() {
 	}
 }
 
-// Criando função(?) responsável por exibir as escolhas na HUD.
+// Função responsável por exibir as escolhas na HUD.
 
 void DesenharMenu(int escolha) {
 
@@ -319,7 +307,7 @@ void DesenharMenu(int escolha) {
 	}
 }
 
-// Criando função(?) responsável por desenhar as telas do jogo.
+// Função responsável por desenhar as telas do jogo.
 
 void DesenharTela(int tel) {
 
@@ -331,7 +319,7 @@ void DesenharTela(int tel) {
 	}
 }
 
-// Criando função(?) que irá conter todas as cartas do jogo.
+//Função que irá criar todas as cartas do jogo.
 
 void CriarCartas() {
 // Criando cartas
@@ -459,7 +447,11 @@ void CriarCartas() {
 	strcpy(cartas[4].linhas[17].linha, "+---------+---------+");
 
 	strcpy(cartas[4].nome_menu[0].linha, "|# - Kyra              |");
-
+         
+	cartas[5].tipo = 1;
+	cartas[5].atk = 3900;
+	cartas[5].def = 1000;
+	strcpy(cartas[5].nome, "GOLYAN");
 	strcpy(cartas[5].desc, "O temido viking");
 	strcpy(cartas[5].linhas[0].linha, "+-------------------+");
 	strcpy(cartas[5].linhas[1].linha, "|      GOLYAN       |");
@@ -483,7 +475,7 @@ void CriarCartas() {
 	strcpy(cartas[5].nome_menu[0].linha, "|# - Golyan            |");
 }
 
-// Criando função(?) referente à tela de início do jogo.
+// Função que cria as telas de início do jogo.
 
 void CriarTelas() {
 
@@ -546,7 +538,7 @@ void CriarTelas() {
 	strcpy(telas[2].linhas[17].linha, "+--------------------------------------------------------------------------------------------------------+");
 }
 
-// Criando função(?) que irá conter as cartas inimigas. (OBS - As cartas não estarão todas na função acima?)
+//Função que cria os gráficos dos inimigos que serão enfrentados no jogo.
 
 void CriarInimigos() {
 
